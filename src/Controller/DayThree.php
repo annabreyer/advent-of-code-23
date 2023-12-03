@@ -27,8 +27,6 @@ class DayThree extends AbstractController
             }
         }
 
-        //false === 535391;
-
         return new Response('Sum is ' . $sum . '.');
     }
 
@@ -80,14 +78,13 @@ class DayThree extends AbstractController
 
     private function isSymbolAdjacentToNumber(array $explodedLines, int $lineKey, int $position, string $number)
     {
-        $numberLength    = strlen($number);
-        $endPosition     = $position + $numberLength;
+        $endPosition     = $position + strlen($number);
         $nextLineKey     = $lineKey + 1;
         $lineBeforeKey   = $lineKey - 1;
         $isFirstLine     = $lineKey === 0;
         $isLastLine      = false === isset($explodedLines[$nextLineKey]);
 
-        while ($position <= $endPosition) {
+        while ($position < $endPosition) {
             $isFirstPosition = 0 === $position;
             $positionBefore  = $position - 1;
             $positionAfter   = $position + 1;
